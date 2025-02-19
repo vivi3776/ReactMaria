@@ -5,7 +5,7 @@ function NavBar() {
   return (
     <>
       {/* Cambiamos el padding y ajustamos la altura */}
-      <div className="w-full text-black py-2">
+      <div className="w-full text-black py-2 ">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
         <img 
   src="/img/icon.png" 

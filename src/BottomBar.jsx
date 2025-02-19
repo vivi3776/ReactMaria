@@ -5,7 +5,7 @@ function BottomBar() {
   return (
     <>
       {/* Cambiamos el padding y ajustamos la altura */}
-      <div className="w-full bg-gray-300 text-black py-2">
+      <div className="fixed bottom-0 left-0 w-full bg-gray-300 text-black py-2 ">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <h1 className="text-xl font-bold">HoverX</h1>
 
