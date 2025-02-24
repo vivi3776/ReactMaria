@@ -2,7 +2,11 @@ import { useState } from "react";
 import { UserIcon, ShoppingCartIcon } from "@heroicons/react/24/outline";
 import NavBar from "./NavBar";
 import BottomBar from "./BottomBar";
+import Producto from "./Producto";
 import "./index.css"; // Importar Tailwind aquí
+import productosData from "./json/productos.json";
+
+
 
 function Inicio() {
   const [openCategory, setOpenCategory] = useState(null);
@@ -71,15 +75,8 @@ function Inicio() {
           <div className="w-4/5 m-8">
             <h2 className="text-2xl font-bold mb-4">Productos</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {productos.map((producto) => (
-                <div key={producto.id} className="bg-white p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-                  <img src={producto.img} alt={producto.name} className="w-full h-40 object-cover rounded" />
-                  <h3 className="text-lg font-semibold mt-2">{producto.name}</h3>
-                  <p className="text-gray-600">{producto.price}</p>
-                  <button className="mt-3 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition" onClick={() => alert("Producto agregado al carrito")}>
-                    Agregar al carrito
-                  </button>
-                </div>
+              {productosData.productos.map((producto) => (
+                <Producto key={producto.id} nombre={producto.name} precio={producto.price} imagen={producto.img} />
               ))}
             </div>
           </div>
