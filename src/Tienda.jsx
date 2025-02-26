@@ -1,14 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
 import { UserIcon, ShoppingCartIcon } from "@heroicons/react/24/outline";
 import NavBar from "./NavBar";
 import BottomBar from "./BottomBar";
 import Producto from "./Producto";
+import Categorias from "./Categorias";
 import "./index.css"; // Importar Tailwind aquí
 import productosData from "./json/productos.json";
 
 
 
 function Inicio() {
+  const [carrito, setCarrito] = useState([]);
+
+  const agregarAlCarrito = (producto) => {
+    setCarrito((prev) => [...prev, producto.id]);
+  };
+  useEffect(() => {
+    if (carrito.length > 0) {
+      alert(JSON.stringify(carrito));
+    }
+  }, [carrito]);
+
   const [openCategory, setOpenCategory] = useState(null);
 
   const toggleCategory = (category) => {
@@ -23,26 +36,17 @@ function Inicio() {
     { name: "Ofertas", subcategories: ["Descuentos", "Paquetes", "Liquidaciones"] },
   ];
 
-  const productos = [
-    { id: 1, name: "Drone DJI Mavic", price: "$1200", img: "/img/mavic.jpg" },
-    { id: 2, name: "Cámara Sony Alpha", price: "$800", img: "/img/sony.jpg" },
-    { id: 3, name: "Gimbal Stabilizer", price: "$150", img: "/img/gimbal1.webp" },
-    { id: 4, name: "Batería Lipo 4S", price: "$90", img: "/img/bateria1.webp" },
-    { id: 5, name: "Drone DJI Phantom", price: "$1000", img: "/img/drone2.webp" },
-    { id: 6, name: "Cámara Canon EOS", price: "$700", img: "/img/camara2.webp" },
-
-  ];
-
   return (
     <>
       <div
         className="w-full min-h-screen bg-cover bg-center text-black"
         style={{ backgroundImage: "url('/img/wallpaper.webp')" }}
       >
-        <NavBar />
+        <NavBar carritoCount={carrito.length}/>
 
         <div className="flex">
           {/* Sidebar de Categorías */}
+          
           <div className="w-1/5 m-8 bg-white p-4 rounded shadow-lg">
             <h1 className="text-center text-2xl font-bold mb-4">Tienda</h1>
 
@@ -70,17 +74,25 @@ function Inicio() {
               ))}
             </ul>
           </div>
-
           {/* Contenido Principal con Tarjetas */}
           <div className="w-4/5 m-8">
             <h2 className="text-2xl font-bold mb-4">Productos</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {productosData.productos.map((producto) => (
-                <Producto key={producto.id} nombre={producto.name} precio={producto.price} imagen={producto.img} />
+                <Producto 
+                  key={producto.id} 
+                  id={producto.id} 
+                  nombre={producto.name} 
+                  precio={producto.price} 
+                  imagen={producto.img} 
+                  agregarAlCarrito={() => agregarAlCarrito(producto)}
+                />
               ))}
             </div>
           </div>
+          
         </div>
+        
 
         <BottomBar />
       </div>
