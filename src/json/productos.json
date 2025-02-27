@@ -1,8 +1,8 @@
 {
     "productos": [
-      { "id": 1, "name": "Drone DJI Mavic", "price": 1200, "img": "/img/mavic.jpg", "type": "drone" },
-      { "id": 2, "name": "Cámara Sony Alpha", "price": 800, "img": "/img/sony.jpg", "type": "camera"},
-      { "id": 3, "name": "Gimbal Stabilizer", "price": 150, "img": "/img/gimbal1.webp" },
+      { "id": 1, "name": "Drone DJI Mavic", "price": 1200, "img": "/img/mavic.jpg", "type": "DJI Mavic" },
+      { "id": 2, "name": "Cámara Sony Alpha", "price": 800, "img": "/img/sony.jpg", "type": "Sony"},
+      { "id": 3, "name": "Gimbal Stabilizer", "price": 150, "img": "/img/gimbal1.webp", "type": "drone" },
       { "id": 4, "name": "Batería Lipo 4S", "price": 90, "img": "/img/bateria1.webp" },
       { "id": 5, "name": "Drone DJI Phantom", "price": 1000, "img": "/img/drone2.webp" },
       { "id": 6, "name": "Cámara Canon EOS", "price": 700, "img": "/img/camara2.webp" }
