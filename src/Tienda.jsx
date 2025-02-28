@@ -8,13 +8,26 @@ import Categorias from "./Categorias";
 import "./index.css";
 import productosData from "./json/productos.json";
 
+
 function Tienda() {
   const [carrito, setCarrito] = useState([]);
-  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
 
+  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
   const agregarAlCarrito = (producto) => {
-    setCarrito((prev) => [...prev, producto.id]);
+    setCarrito((prev) => {
+      const nuevoCarrito = [...prev, producto.id];
+      localStorage.setItem("carrito", JSON.stringify(nuevoCarrito)); // Guarda en localStorage
+      return nuevoCarrito;
+    });
   };
+  
+  // Recuperar el carrito al cargar la tienda
+  useEffect(() => {
+    const carritoGuardado = JSON.parse(localStorage.getItem("carrito"));
+    if (carritoGuardado) {
+      setCarrito(carritoGuardado);
+    }
+  }, []);
 
   useEffect(() => {
     if (carrito.length > 0) {

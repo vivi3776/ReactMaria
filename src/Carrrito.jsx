@@ -1,7 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect} from 'react';
+
 import NavBar from './NavBar';
 
 function Carrito() {
+
+  const [carrito, setCarrito] = useState([]);
+    useEffect(() => {
+        const carritoGuardado = JSON.parse(localStorage.getItem("carrito"));
+        if (carritoGuardado) {
+          setCarrito(carritoGuardado);
+        }
+      }, []);
+
   // Aquí simula un carrito con productos
   const [productosCarrito, setProductosCarrito] = useState([
     { id: 1, nombre: 'Drone A', cantidad: 1, precio: 300 },
@@ -13,7 +23,7 @@ function Carrito() {
 
   return (
     <>
-    <NavBar/>
+    <NavBar carritoCount={carrito.length}/>
     <div className="w-full min-h-screen bg-gray-100 py-8">
       <div className="max-w-7xl mx-auto bg-white p-6 rounded-lg shadow-md">
         <h1 className="text-3xl font-bold text-center mb-6">Carrito de Compras</h1>
