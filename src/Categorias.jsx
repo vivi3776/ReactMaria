@@ -1,20 +1,8 @@
 import { useState, useEffect } from "react";
 
-export default function Categorias(){
+export default function Categorias({categories, toggleCategory, openCategory}) {
 
-  const [openCategory, setOpenCategory] = useState(null);
-  
-    const toggleCategory = (category) => {
-      setOpenCategory(openCategory === category ? null : category);
-    };
-  
-    const categories = [
-      { name: "Profesional", subcategories: ["DJI Inspire", "DJI Dock", "DJI Matrice"] },
-      { name: "Amateur", subcategories: ["DJI Mavic", "Canon", "Nikon"] },
-      { name: "Iniciación", subcategories: ["Filtros", "Mochilas", "Gimbals"] },
-      { name: "Baterías", subcategories: ["Lipo 3S", "Lipo 4S", "Lipo 6S"] },
-      { name: "Ofertas", subcategories: ["Descuentos", "Paquetes", "Liquidaciones"] },
-    ];
+
     return(
         <>
         <div className="w-1/5 m-8 bg-white p-4 rounded shadow-lg">
