@@ -55,7 +55,7 @@ function NavBar() {
         <nav className="flex-1 flex justify-center">
           <ul className="flex space-x-4">
             <li>
-              <Link to="/contact" className="relative inline-block group hover:text-gray-600">
+              <Link to="/contacto" className="relative inline-block group hover:text-gray-600">
                 Contacto
                 <span className="absolute left-1/2 transform -translate-x-1/2 -bottom-1 h-0.5 w-0 bg-gray-600 transition-all duration-300 group-hover:w-full"></span>
               </Link>

@@ -7,6 +7,8 @@ import Tienda from './Tienda.jsx'
 import Carrito from './Carrrito.jsx';
 import Productos from './AgregarProductos.jsx';
 import Login from './Login.jsx';
+import Comparador from './Comparador.jsx';
+import Contacto from './Contacto.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -17,6 +19,8 @@ createRoot(document.getElementById('root')).render(
         <Route path="/carrito" element={<Carrito />} />
         <Route path="/agregar" element={<Productos />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/comparador" element={<Comparador />} />
+        <Route path="/contacto" element={<Contacto />} />
       </Routes>
     </Router>
   </StrictMode>,

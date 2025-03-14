@@ -1,13 +1,11 @@
 import { UserIcon, ShoppingCartIcon } from "@heroicons/react/24/outline";
-import './index.css'; // Importar Tailwind aquí
+import './index.css';
 
 function BottomBar() {
   return (
     <>
-      {/* Cambiamos el fondo a blanco y ajustamos el estilo */}
       <div className="fixed bottom-0 left-0 w-full bg-white text-black py-2 border-t border-gray-300">
         <div className="max-w-7xl mx-auto flex items-center justify-between px-4">
-          {/* Enlaces centrales */}
           <nav className="flex-1 flex justify-center">
             <ul className="flex space-x-4 text-sm">
               <li>
@@ -48,8 +46,6 @@ function BottomBar() {
               </li>
             </ul>
           </nav>
-
-          
         </div>
       </div>
     </>

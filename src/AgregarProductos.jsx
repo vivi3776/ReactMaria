@@ -5,14 +5,13 @@ import BottomBar from "./BottomBar";
 
 function AgregarProductos() {
   const [nombre, setNombre] = useState("");
-  const [precio, setPrecio] = useState(0); // Se añade la propiedad precio
+  const [precio, setPrecio] = useState(0);
   const [descripcion, setDescripcion] = useState("");
-  const [type, setType] = useState(""); // Cambié 'categoria' a 'type'
+  const [type, setType] = useState("");
   const [imagen, setImagen] = useState(null);
   const [productos, setProductos] = useState([]);
   const [productoEditado, setProductoEditado] = useState(null);
 
-  // Cargar productos desde localStorage
   useEffect(() => {
     const productosGuardados = JSON.parse(localStorage.getItem("productos"));
     if (productosGuardados) {
@@ -20,7 +19,6 @@ function AgregarProductos() {
     }
   }, []);
 
-  // Función para manejar el cambio de la imagen
   const handleImagenChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -32,19 +30,18 @@ function AgregarProductos() {
     }
   };
 
-  // Guardar o actualizar producto en localStorage
   const guardarProducto = () => {
-    if (!imagen) {
-      alert("Debes agregar una imagen para el producto.");
+    if (!nombre || !precio || !descripcion || !type || !imagen) {
+      alert("Todos los campos son obligatorios.");
       return;
     }
 
     const nuevoProducto = {
       id: productoEditado ? productoEditado.id : productos.length + 1,
       name: nombre,
-      price: precio, // Añadir el precio aquí
+      price: precio,
       description: descripcion,
-      type, // Cambié 'categoria' por 'type'
+      type,
       img: imagen,
     };
 
@@ -61,33 +58,30 @@ function AgregarProductos() {
     localStorage.setItem("productos", JSON.stringify(productosActualizados));
 
     setNombre("");
-    setPrecio(0); // Resetear el precio
+    setPrecio(0);
     setDescripcion("");
-    setType(""); // Resetear 'type' en lugar de 'categoria'
+    setType("");
     setImagen(null);
     setProductoEditado(null);
   };
 
-  // Eliminar producto de localStorage
   const eliminarProducto = (id) => {
     const productosFiltrados = productos.filter((producto) => producto.id !== id);
     setProductos(productosFiltrados);
     localStorage.setItem("productos", JSON.stringify(productosFiltrados));
   };
 
-  // Editar producto
   const editarProducto = (producto) => {
     setNombre(producto.name);
-    setPrecio(producto.price); // Cargar el precio del producto
+    setPrecio(producto.price);
     setDescripcion(producto.description);
-    setType(producto.type); // Cambié 'categoria' por 'type'
+    setType(producto.type);
     setImagen(producto.img);
     setProductoEditado(producto);
   };
 
-  // Función para truncar nombres largos y agregar "..."
-  const truncateName = (name, maxLength) => {
-    return name.length > maxLength ? `${name.substring(0, maxLength)}...` : name;
+  const truncateText = (text, maxLength) => {
+    return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
   };
 
   return (
@@ -123,11 +117,10 @@ function AgregarProductos() {
                 onChange={(e) => setDescripcion(e.target.value)}
               ></textarea>
 
-              {/* Selector de tipo */}
               <select
                 className="p-3 border border-gray-300 rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                value={type} // Cambié 'categoria' por 'type'
-                onChange={(e) => setType(e.target.value)} // Cambié 'setCategoria' por 'setType'
+                value={type}
+                onChange={(e) => setType(e.target.value)}
               >
                 <option value="">Seleccionar tipo</option>
                 <option value="DJI Mavic">DJI Mavic</option>
@@ -169,10 +162,10 @@ function AgregarProductos() {
               <div key={producto.id} className="p-6 bg-gray-100 rounded-lg shadow-md hover:shadow-xl transition-all duration-300">
                 <div className="flex flex-col items-center space-y-4">
                   <img src={producto.img} alt={producto.name} className="w-24 h-24 object-cover rounded-lg" />
-                  <h4 className="text-xl font-semibold text-gray-800">{truncateName(producto.name, 20)}</h4>
-                  <p className="text-sm text-gray-600">Tipo: {producto.type}</p> {/* Cambié 'categoria' por 'type' */}
-                  <p className="text-sm text-gray-600">Precio: ${producto.price}</p> {/* Mostrar precio */}
-                  <p className="text-sm text-gray-600">Descripción: {producto.description}</p>
+                  <h4 className="text-xl font-semibold text-gray-800">{truncateText(producto.name, 20)}</h4>
+                  <p className="text-sm text-gray-600">Tipo: {producto.type}</p>
+                  <p className="text-sm text-gray-600">Precio: {producto.price}€</p>
+                  <p className="text-sm text-gray-600">Descripción: {truncateText(producto.description, 50)}</p>
 
                   <div className="flex space-x-4">
                     <button onClick={() => editarProducto(producto)} className="text-blue-500 hover:text-blue-700">
