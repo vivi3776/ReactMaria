@@ -1,0 +1,14 @@
+{
+    "productos": [
+      {
+        "id": 1,
+        "name": "Drone DJI Mavic",
+        "price": 1200,
+        "img": "/img/mavic.jpg",
+        "type": "DJI Mavic",
+        "desc": "Altas prestaciones",
+        "stock": 5
+      }
+    ]
+  }
+  
